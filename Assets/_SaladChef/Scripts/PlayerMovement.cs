@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public KeyCode moveRight = KeyCode.D;
     public KeyCode moveLeft = KeyCode.A;
 
+    [Header("Interaction")]
+    public KeyCode interact = KeyCode.E;
+
     [Header("Player Movement Properties")]
 
     [SerializeField]
@@ -55,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Minimum speed of the Player
     private float minSpeed = 3f;
-    
+
     // Player should move this frame or not
     private bool shouldMove = false;
 
@@ -66,6 +69,9 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController = null;
     // Reference to Player Info class
     private PlayerInfo playerInfo = null;
+
+    public delegate void OnInteractDel(bool pressed, PlayerInfo player);
+    public OnInteractDel OnInteract;
 
 
     // Start is called before the first frame update
@@ -150,6 +156,19 @@ public class PlayerMovement : MonoBehaviour
                 shouldMove = true;
             }
         }
+
+        // Check for Interaction key press
+        if (Input.GetKeyDown(interact))
+        {
+            // Call the Delegate on Key Pressed
+            OnInteract?.Invoke(true, playerInfo);
+        }
+        if (Input.GetKeyUp(interact))
+        {
+            // Call Delegate on Key Released
+            OnInteract?.Invoke(false, playerInfo);
+        }
+
         // Apply gravity
         moveDirection.y -= 1 * Time.deltaTime;
         // Set animtion script variable to animate between idle and walking

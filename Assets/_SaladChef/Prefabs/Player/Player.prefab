@@ -1647,9 +1647,10 @@ MonoBehaviour:
   moveBackward: 115
   moveRight: 100
   moveLeft: 97
+  interact: 101
   canMove: 1
-  moveSpeed: 3
-  maxSpeed: 8
+  moveSpeed: 2
+  maxSpeed: 5
   rotationSpeed: 5
 --- !u!143 &6734332535820241940
 CharacterController:
@@ -1664,8 +1665,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.7
   m_Radius: 0.4
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 10
+  m_StepOffset: 0.05
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
